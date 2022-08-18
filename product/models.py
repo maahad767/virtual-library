@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-UserModel = get_user_model()
+USER_MODEL = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -22,9 +22,8 @@ class Book(models.Model):
     published_date = models.DateField()
     description = models.TextField(blank=True)
 
-
     # product meta data
-    owner = models.ForeignKey(UserModel, related_name='books', on_delete=models.CASCADE)
+    owner = models.ForeignKey(USER_MODEL, related_name='books', on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
     price = models.IntegerField()
     rent = models.IntegerField()
