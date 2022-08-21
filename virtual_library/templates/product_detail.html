@@ -1,187 +1,259 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extra_head %}
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<!-- ========================= CSS here ========================= -->
-{% comment %} <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" /> {% endcomment %}
-<link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-{% endblock %}
-
 {% block content %}
+<style>
+    .rating {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        outline: none;
 
-<section class="item-details section">
-    <div class="container">
-        <div class="top-area">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="product-images">
-                        <main id="gallery">
-                            <div class="main-img">
-                                <img src="{% static 'assets/images/product-details/01.jpg' %}" id="current" alt="#">
-                            </div>
-                            <div class="images">
-                                <img src="{% static 'assets/images/product-details/01.jpg' %}" class="img" alt="#">
-                                <img src="{% static 'assets/images/product-details/02.jpg' %}" class="img" alt="#">
-                                <img src="{% static 'assets/images/product-details/03.jpg' %}" class="img" alt="#">
-                                <img src="{% static 'assets/images/product-details/04.jpg' %}" class="img" alt="#">
-                                <img src="{% static 'assets/images/product-details/05.jpg' %}" class="img" alt="#">
-                            </div>
-                        </main>
+    }
+    .rating > li {
+        display: inline;
+        list-style: none;
+        padding: 2px;
+        cursor: pointer;
+    }
+</style>
+<section style="background-color: #eee;">
+    <div class="container py-5 my-5">
+      <div class="row">
+        <div class="col-lg-7">
+                  <div class="card mb-4" style="border-radius: 15px;">
+                    <div class="card-body text-center">
+                      <div class="mt-3 mb-4">
+                        {% if book.cover_photo %}
+                        <img src="{{ book.cover_photo.url }}" alt="{{ book.title }}""
+                          class="img-thumbnail img-fluid"/>
+                          {% else %}
+                        <img src="{% static 'assets/images/book-default.jpeg' %}"
+                          class="img-thumbnail img-fluid" style="width: 320px;" />
+                        {% endif %}
+
+                      </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="product-info">
-                        <h2 class="title">GoPro Karma Camera Drone</h2>
-                        <p class="category"><i class="lni lni-tag"></i> Drones:<a href="javascript:void(0)">Action
-                                cameras</a></p>
-                        <h3 class="price">$850<span>$945</span></h3>
-                        <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt
-                            ut labore et dolore magna aliqua.</p>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group color-option">
-                                    <label class="title-label" for="size">Choose color</label>
-                                    <div class="single-checkbox checkbox-style-1">
-                                        <input type="checkbox" id="checkbox-1" checked>
-                                        <label for="checkbox-1"><span></span></label>
-                                    </div>
-                                    <div class="single-checkbox checkbox-style-2">
-                                        <input type="checkbox" id="checkbox-2">
-                                        <label for="checkbox-2"><span></span></label>
-                                    </div>
-                                    <div class="single-checkbox checkbox-style-3">
-                                        <input type="checkbox" id="checkbox-3">
-                                        <label for="checkbox-3"><span></span></label>
-                                    </div>
-                                    <div class="single-checkbox checkbox-style-4">
-                                        <input type="checkbox" id="checkbox-4">
-                                        <label for="checkbox-4"><span></span></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group">
-                                    <label for="color">Battery capacity</label>
-                                    <select class="form-control" id="color">
-                                        <option>5100 mAh</option>
-                                        <option>6200 mAh</option>
-                                        <option>8000 mAh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="form-group quantity">
-                                    <label for="color">Quantity</label>
-                                    <select class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bottom-content">
-                            <div class="row align-items-end">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="button cart-button">
-                                        <button class="btn" style="width: 100%;">Add to Cart</button>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="wish-button">
-                                        <button class="btn"><i class="lni lni-reload"></i> Compare</button>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="wish-button">
-                                        <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  </div>
+          
         </div>
-        <div class="product-details-info">
-            <div class="single-block">
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="info-body custom-responsive-margin">
-                            <h4>Details</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-                            <h4>Features</h4>
-                            <ul class="features">
-                                <li>Capture 4K30 Video and 12MP Photos</li>
-                                <li>Game-Style Controller with Touchscreen</li>
-                                <li>View Live Camera Feed</li>
-                                <li>Full Control of HERO6 Black</li>
-                                <li>Use App for Dedicated Camera Operation</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="info-body">
-                            <h4>Specifications</h4>
-                            <ul class="normal-list">
-                                <li><span>Weight:</span> 35.5oz (1006g)</li>
-                                <li><span>Maximum Speed:</span> 35 mph (15 m/s)</li>
-                                <li><span>Maximum Distance:</span> Up to 9,840ft (3,000m)</li>
-                                <li><span>Operating Frequency:</span> 2.4GHz</li>
-                                <li><span>Manufacturer:</span> GoPro, USA</li>
-                            </ul>
-                            <h4>Shipping Options:</h4>
-                            <ul class="normal-list">
-                                <li><span>Courier:</span> 2 - 4 days, $22.50</li>
-                                <li><span>Local Shipping:</span> up to one week, $10.00</li>
-                                <li><span>UPS Ground Shipping:</span> 4 - 6 days, $18.00</li>
-                                <li><span>Unishop Global Export:</span> 3 - 4 days, $25.00</li>
-                            </ul>
-                        </div>
-                    </div>
+        <div class="col-lg-5">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <h4 class="mb-5">{{book.title}}</h4>
+                <div class="col-sm-3">
+                  <p class="mb-0">Author</p>
                 </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{book.author}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Published on</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{book.published_date}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Category</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{book.category.name}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Price</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Tk.{{book.price}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Rent</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Tk.{{book.rent}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row mb-4">
+                <div class="col-sm-3">
+                  <p class="mb-0">Status</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">
+                {% if book.status == 'available' %}
+                    Available
+                {% elif book.status == 'sold' %}
+                    Not Available
+                {% else %}
+                   Available from {{book.available_from}}
+                {% endif %}
+
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center text-center mb-2">
+                {% if book.status == 'available' %}
+                <a href="{% url 'order_create' book.id %}" type="button" class="btn btn-primary btn-rounded btn-lg">
+                  Rent now
+                </a> 
+                {% else %}
+                <button type="button" class="btn btn-primary btn-rounded btn-lg disabled">
+                  Not Available For Rent Now
+                </button> 
+                {% endif %}
+              </div>
             </div>
+          </div>
+         
         </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md">
+          <div class="card mb-4 mb-md-0">
+            <div class="card-body">
+              <h4 class="mb-4">Book Description
+              </h4>
+              <p class="card-text">
+                {% lorem 3 b random %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md">
+          <div class="card mb-4 mb-md-0">
+            <div class="card-body">
+                <!-- <div class="card">
+                    <div class="card-body p-4"> -->
+                      <div class="d-flex flex-start w-100">
+                        <img class="rounded-circle shadow-1-strong me-3"
+                          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp" alt="avatar" width="65"
+                          height="65" />
+                        <div class="w-100">
+                          <h5>Add a review</h5>
+                          <ul class="rating mb-3" data-mdb-toggle="rating">
+                            <li>
+                              <i class="far fa-star fa-sm text-danger" title="Bad"></i>
+                            </li>
+                            <li>
+                              <i class="far fa-star fa-sm text-danger" title="Poor"></i>
+                            </li>
+                            <li>
+                              <i class="far fa-star fa-sm text-danger" title="OK"></i>
+                            </li>
+                            <li>
+                              <i class="far fa-star fa-sm text-danger" title="Good"></i>
+                            </li>
+                            <li>
+                              <i class="far fa-star fa-sm text-danger" title="Excellent"></i>
+                            </li>
+                          </ul>
+                          <div class="form-outline">
+                            <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+                            <label class="form-label" for="textAreaExample">What is your view?</label>
+                          </div>
+                          <div class="d-flex justify-content-between mt-3">
+                            <!-- <button type="button" class="btn btn-success">Danger</button> -->
+                            <button type="button" class="btn btn-primary">
+                              Submit <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- </div>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <div class="card mb-4 mb-md-0">
+            <div class="card-body">
+              <h4 class="mb-4">Recent Reviews
+              </h4>
+              <div class="d-flex flex-start">
+                <img class="rounded-circle shadow-1-strong me-3"
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp" alt="avatar" width="65"
+                  height="65" />
+                <div class="card w-100">
+                  <div class="card-body p-4">
+                    <div class="">
+                      <h5>Mindy Campbell</h5>
+                      <p class="small">5 hours ago</p>
+                      <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+                        cumque doloribus dolorum dolor repellat nemo animi at iure autem fuga
+                        cupiditate architecto ut quam provident neque, inventore nisi eos quas?
+                      </p>
+            
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <a href="#!" class="link-muted me-2"><i class="fas fa-thumbs-up me-1"></i>158</a>
+                          <a href="#!" class="link-muted"><i class="fas fa-thumbs-down me-1"></i>13</a>
+                        </div>
+                        <a href="#!" class="link-muted"><i class="fas fa-reply me-1"></i> Reply</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
-
+  </section>
 {% endblock %}
 
-{% block extra_footer %}
-<!-- ========================= JS here ========================= -->
-<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'assets/js/tiny-slider.js' %}"></script>
-<script src="{% static 'assets/js/glightbox.min.js' %}"></script>
-<script src="{% static 'assets/js/main.js' %}"></script>
-<script type="text/javascript">
-    const current = document.getElementById("current");
-    const opacity = 0.6;
-    const imgs = document.querySelectorAll(".img");
-    imgs.forEach(img => {
-        img.addEventListener("click", (e) => {
-            //reset opacity
-            imgs.forEach(img => {
-                img.style.opacity = 1;
-            });
-            current.src = e.target.src;
-            //adding class 
-            //current.classList.add("fade-in");
-            //opacity
-            e.target.style.opacity = opacity;
-        });
-    });
-</script>
-{% endblock extra_footer %}
+
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-11 col-lg-9 col-xl-7">
+          <div class="d-flex flex-start mb-4">
+            <img class="rounded-circle shadow-1-strong me-3"
+              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" width="65"
+              height="65" />
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <div class="">
+                  <h5>Johny Cash</h5>
+                  <p class="small">3 hours ago</p>
+                  <p>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                    ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus
+                    viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+                    Donec lacinia congue felis in faucibus ras purus odio, vestibulum in
+                    vulputate at, tempus viverra turpis.
+                  </p>
+  
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                      <a href="#!" class="link-muted me-2"><i class="fas fa-thumbs-up me-1"></i>132</a>
+                      <a href="#!" class="link-muted"><i class="fas fa-thumbs-down me-1"></i>15</a>
+                    </div>
+                    <a href="#!" class="link-muted"><i class="fas fa-reply me-1"></i> Reply</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          
+        </div>
+      </div>
+    </div>
+  </section>

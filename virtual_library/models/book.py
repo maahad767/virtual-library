@@ -23,7 +23,7 @@ class Book(models.Model):
     price = models.IntegerField()
     rent = models.IntegerField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
-    availabe_from = models.DateField(null=True)
+    available_from = models.DateField(null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container m-5 p-5 w-100">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input name="first_name" value="{{form.first_name.value}}" type="text" id="form6Example1" class="form-control" />
+              <label class="form-label" for="form6Example1">First name</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input name="last_name" value="{{form.last_name.value}}"  type="text" id="form6Example2" class="form-control" />
+              <label class="form-label" for="form6Example2">Last name</label>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Text input -->
+        <div class="form-outline mb-4">
+          <input type="file" accept="image/png, image/gif, image/jpeg" id="form6Example3" class="form-control" />
+          <!-- <label class="form-label" for="form6Example3">Photo</label> -->
+        </div>
+      
+        
+      
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input name="email" value="{{form.email.value}}"  type="email" id="form6Example5" class="form-control" />
+          <label class="form-label" for="form6Example5">Email</label>
+        </div>
+      
+        <!-- Number input -->
+        <div class="form-outline mb-4">
+          <input name="phone" value="{{form.phone.value}}"  type="tel" id="form6Example6" class="form-control" />
+          <label class="form-label" for="form6Example6">Phone</label>
+        </div>
+      
+        <!-- Message input -->
+        
+        <div class="form-outline mb-4">
+          <textarea  name="address" class="form-control" id="form6Example7" rows="4">{{form.address.value}}</textarea>
+          <label class="form-label" for="form6Example7">Address</label>
+        </div>
+      
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Update Account</button>
+      </form>
+</div>
+
+{% endblock content %}
