@@ -11,6 +11,9 @@ class LoginView(authviews.LoginView):
     template_name = 'login.html'
     redirect_authenticated_user = True
 
+    def form_invalid(self, form):
+        print(form.errors)
+        return render(self.request, self.template_name, {'form': form})
 
 class LogoutView(authviews.LogoutView):
     template_name = 'logout.html'

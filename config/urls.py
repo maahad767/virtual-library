@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from virtual_library import views
 
@@ -31,4 +33,5 @@ urlpatterns = [
     path('product-detail/<int:pk>/', views.ProductDetailView.as_view(), name='product_detail'),
     # order
     path('order/', views.OrderView.as_view(), name='order'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

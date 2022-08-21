@@ -12,20 +12,22 @@ class Book(models.Model):
     )
     # book meta data
     title = models.CharField(max_length=100)
+    cover_photo = models.ImageField(upload_to='media/book_covers', blank=True)
     author = models.CharField(max_length=100)
     published_date = models.DateField()
     description = models.TextField(blank=True)
 
     # product meta data
     owner = models.ForeignKey(User, related_name='books', on_delete=models.CASCADE)
-    category = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     price = models.IntegerField()
     rent = models.IntegerField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
+    availabe_from = models.DateField(null=True)
 
-    # time tracking data
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.title} ({self.id})'
+
