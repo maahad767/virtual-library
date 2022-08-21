@@ -21,7 +21,14 @@ from virtual_library import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),
+    # auth 
     path('login/', views.LoginView.as_view(), name='login'),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    # profile
+    path('profile/', views.ProfileView.as_view(), name='profile'),
+    # product
+    path('product-detail/<int:pk>/', views.ProductDetailView.as_view(), name='product_detail'),
+    # order
+    path('order/', views.OrderView.as_view(), name='order'),
 ]
