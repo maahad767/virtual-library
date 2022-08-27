@@ -31,8 +31,6 @@ class RegisterView(generic.View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = True
-            user.save()
+            form.save()
             return redirect(self.success_url)
         return render(request, self.template_name, {'form': form})

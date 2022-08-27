@@ -9,8 +9,14 @@ class HomeView(generic.View):
     template_name = 'home.html'
 
     def get(self, request, *args, **kwargs):
-        qs = request.GET.get('q')
-        books = Book.objects.all().annotate(avg_rating=Avg('rating__rating'))
-        if qs:
-            books = books.filter(title__icontains=qs)
-        return render(request, self.template_name, {'books': books})
+        query_string = request.GET.get('q')
+        all_books = Book.objects.all().annotate(avg_rating=Avg('rating__rating'))
+        filtered_books = self.filter_queryset(all_books, query_string)
+        
+        return render(request, self.template_name, {'books': filtered_books})
+
+    def filter_queryset(queryset, query_string):
+        if query_string:
+            queryset = queryset.filter(title__icontains=query_string)
+        return queryset
+        

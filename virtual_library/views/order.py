@@ -20,11 +20,22 @@ class OrderDetailView(generic.DetailView):
 class OrderCreateView(generic.View):
 
     def get(self, request, *args, **kwargs):
+        order = self.create_new_order()
+        self.update_order_info(order)
+        return redirect('order_detail', pk=order.pk)
+
+    def create_new_order(self):
         book = Book.objects.get(id=self.kwargs['id'])
         user = self.request.user
-        return_date = timedelta(days=30) + datetime.now()
+        return_date = self.get_return_date()
         order = RentOrder.objects.create(book=book, user=user, return_date=return_date)
+        return order
+    
+    def update_order_info(self, order):
         order.book.status = 'on_rent'
-        order.book.available_from = return_date
+        order.book.available_from = self.get_return_date()
         order.book.save()
-        return redirect('order_detail', pk=order.pk)
+
+
+    def get_return_date(self):
+        return timedelta(days=30) + datetime.now()
