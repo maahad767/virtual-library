@@ -29,12 +29,12 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name='logout'),
     # profile
     path('profile/', views.ProfileView.as_view(), name='profile'),
-    path('profile/update/<', views.ProfileUpdateView.as_view(), name='profile_update'),
+    path('profile/update/', views.ProfileUpdateView.as_view(), name='profile_update'),
     # product
     path('product-create/', views.ProductCreateView.as_view(), name='product_create'),
     path('product-detail/<int:pk>/', views.ProductDetailView.as_view(), name='product_detail'),
     # order
-    path('order/<int:pk>/', views.OrderDetailView.as_view(), name='order_detail'),
     path('order-create/<int:id>/', views.OrderCreateView.as_view(), name='order_create'),
+    path('order/<int:pk>/', views.OrderDetailView.as_view(), name='order_detail'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

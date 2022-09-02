@@ -15,7 +15,7 @@ class HomeView(generic.View):
         
         return render(request, self.template_name, {'books': filtered_books})
 
-    def filter_queryset(queryset, query_string):
+    def filter_queryset(self, queryset, query_string):
         if query_string:
             queryset = queryset.filter(title__icontains=query_string)
         return queryset

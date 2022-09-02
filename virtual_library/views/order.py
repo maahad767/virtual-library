@@ -35,7 +35,6 @@ class OrderCreateView(generic.View):
         order.book.status = 'on_rent'
         order.book.available_from = self.get_return_date()
         order.book.save()
-
-
+        
     def get_return_date(self):
-        return timedelta(days=30) + datetime.now()
+        return timedelta(days=30) + datetime.now().date()
