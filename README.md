@@ -6,6 +6,10 @@ Python 3.8+
 
 ## Installation 
 - Create a Virtual Environment and Activate it.
+- Clone the project using following command (git should be installed)
+```
+git clone https://github.com/maahad767/virtual-library.git
+```
 - Install the project dependencies by running following command
 ```
 pip install -r requirements.txt
