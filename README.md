@@ -24,3 +24,9 @@ python manage.py migrate
 python manage.py runserver 
 ```
 - Now, visit http://127.0.0.1:8000/ to access the website.
+
+## Testing
+To run the tests, run the following command
+```
+python manage.py test
+```
