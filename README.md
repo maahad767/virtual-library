@@ -1,4 +1,5 @@
-# virtual-library
+# Virtual Library
+This is a web based system which allows user to share their books and earn profits as well as rent books to read great and rare books in low cost. The system also have book reviews, comments, and many more to guide users to best books and best book sharers.
 
 ## Requirements (software)
 Python 3.8+
